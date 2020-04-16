@@ -221,7 +221,6 @@ $GLOBALS["mysql"]->delete("man", "name = 'Karel' AND age = 28");
 DELETE **last** row in *$table*
 
 ```php
-// Both variant are possible
 $GLOBALS["mysql"]->deleteLast("man");
 ```
 
