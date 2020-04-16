@@ -48,8 +48,8 @@ $array_man = $GLOBALS["mysql"]->query("
 ");
 
 foreach($array_man as $man){
-	$array->namespace	=> "John"
-	$array->age 		=> "28"
+	$array->name	=> "John"
+	$array->age 	=> "28"
 }
 
 ```
