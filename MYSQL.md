@@ -92,8 +92,8 @@ $success	=> true // when everything is OK
 
 
 ## insert($table, $array_items)
-- $table [string]				name of DB table "man"
-- $array_items [key array]		values for update "array( 'age'=>'10', 'name'=>'Karel' )"
+- **$table [string]**				name of DB table "man"
+- **$array_items [key array]**		values for update "array( 'age'=>'10', 'name'=>'Karel' )"
 - @return [boolean]
 
 INSERT new row in $table created from data in $array_item.
@@ -110,9 +110,9 @@ $GLOBALS["mysql"]->insert("man", [
 
 
 ## update($table, $array_items, $where)
-* **$db [string]**				name of DB table "man"
+* **$db [string]**					name of DB table "man"
 * **$array_items [key array]**		values for update "array( 'age'=>'10', 'name'=>'Karel' )"
-* **$where [string]**			"age=28 AND name='Carl'"
+* **$where [string]**				"age=28 AND name='Carl'"
 - @return [boolean]
 
 INSERT new row in $table created from data in $array_item.
@@ -131,8 +131,8 @@ $GLOBALS["mysql"]->update("man", [
 
 
 ## delete($table, $where)
-- $table [string]
-- $array_items [key array]
+* **$table [string]** 			name of DB table "man"
+* **$where [string]**			"age=28 AND name='Carl'"
 - @return [boolean]
 
 INSERT new row in $table created from data in $array_item.
