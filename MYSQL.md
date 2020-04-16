@@ -205,3 +205,24 @@ Check if SQL command return data. If YES return *1*. If NOT return *0*
 ```php
 $GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Karel'")	=> 1 if exist
 ```
+
+
+## nextIncrement($table)
+- **$table [string]**	name of table
+- @return [void]
+
+Return next automatic increment of specicic *$table*
+
+```php
+$GLOBALS["mysql"]->increment("man")	=> 126
+```
+
+## lastID($table)
+- **$table [string]**	name of table
+- @return [void]
+
+Return last given increment of specicic *$table*
+
+```php
+$GLOBALS["mysql"]->increment("man")	=> 126
+```
