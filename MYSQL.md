@@ -53,6 +53,29 @@ foreach($array_man as $man){
 }
 
 ```
+
+
+## query_($sql)
+- **$sql [string]**				SQL command
+- **@return [\SqlManager\DB]**	Just one OBJ
+
+No matter what, you get only **first row** or **NULL**. This row is not in array, it is just *\SqlManager\DB* object.
+
+```php
+$_man = $GLOBALS["mysql"]->query_("
+	SELECT *
+	FROM man
+");
+
+$_man->name => "John"
+
+```
+
+
+
+
+
+
 ## multi_query($sql)
 - $sql [string]
 - @return [boolean]
@@ -180,5 +203,5 @@ $GLOBALS["mysql"]->insert("man", [
 Check if SQL command return data. If YES return *1*. If NOT return *0*
 
 ```php
-$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Karel'")	=> 1
+$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Karel'")	=> 1 if exist
 ```

@@ -2,17 +2,22 @@
 namespace SqlManager;
 
 class Mysql extends \Mysqli{
-	public $localData;		// array of data for local Mysqli connection
-	public $serverData;		// array of data for server Mysqli connection
 	public $mysqli;			// class Mysqli
+
+	public $server_name;		// server name
+	public $db_user;			// DB user
+	public $db_pass;			// DB password
+	public $db_name;			// DB name
 
 	public $sql;			// array of all mysql sql call;
 	public $data;			// array of all get data from DB
 
 
 	public function __construct($serverData, $localData = null){
-		$this->serverData = $serverData;
-		$this->localData = (is_array($localData))? $localData : $serverData;
+		$localData = (is_array($localData))? $localData : $serverData;
+
+		if($_SERVER['REMOTE_ADDR']=='::1')	self::setData($localData);
+		else								self::setData($serverData);
 
 		self::connect();
 		parent::set_charset("utf8");
@@ -21,14 +26,14 @@ class Mysql extends \Mysqli{
 	}
 
 	public function connect(){
-		if($_SERVER['REMOTE_ADDR']=='::1'){
-			$this->mysqli = parent::__construct($this->localData['server_name'], $this->localData['db_user'], $this->localData['db_pass'], $this->localData['db_name']);
-		}else{
-			$this->mysqli = parent::__construct($this->serverData['server_name'], $this->serverData['db_user'], $this->serverData['db_pass'], $this->serverData['db_name']);
-		}
+		$this->mysqli = parent::__construct($this->server_name, $this->db_user, $this->db_pass, $this->db_name);
 	}
 
-
+	private function setData(Array $properties){
+		foreach($properties as $key => $value){
+			$this->{$key} = $value;
+		}
+	}
 
 
 	public function multi_query($multi_sql){
@@ -53,6 +58,14 @@ class Mysql extends \Mysqli{
 	 	}else{
 			return $db_data;
 		}
+	}
+
+
+	public function query_($sql){
+		$array_data = self::query($sql);
+
+		if(is_array($array_data)) 	return $array_data[0];
+		else 						return $array_data;
 	}
 
 
@@ -177,8 +190,19 @@ class Mysql extends \Mysqli{
 		self::query($sql);
 	}
 
-	public function increment(){
 
+
+
+	public function increment($table){
+		$sql = "
+			SELECT  AUTO_INCREMENT
+			FROM    information_schema.TABLES
+			WHERE   (TABLE_NAME = '".$table."')
+		";
+		if(!self::exist($sql))	return null;
+
+		$table = self::query($sql);
+		return $table[0]->AUTO_INCREMENT;
 	}
 
 

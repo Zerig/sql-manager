@@ -49,6 +49,7 @@ echo "RESET DB MAN: ".$msg."<br>";
 
 echo "<br>---------------------------------------------<br><br>";
 
+echo "::query('SELECT * FROM man')<br>";
 $array_man = $GLOBALS["mysql"]->query("
 	SELECT *
 	FROM man
@@ -57,6 +58,16 @@ $array_man = $GLOBALS["mysql"]->query("
 foreach($array_man as $man){
 	echo $man->name." [".$man->age."]<br>";
 }
+
+
+echo "<br>---------------------------------------------<br><br>";
+
+echo "::query_('SELECT * FROM man')<br>";
+$_man = $GLOBALS["mysql"]->query_("
+	SELECT *
+	FROM man
+");
+echo $_man->name." [".$_man->age."]<br>";
 
 echo "<br>---------------------------------------------<br><br>";
 echo "::insert('man', ['name' => 'Karel', 'age' => '54'])<br>";
@@ -112,3 +123,8 @@ $GLOBALS["mysql"]->upsert('man', ['age' => '120'], 'name = "Nýmeček"');
 $array_man = $GLOBALS["mysql"]->query("SELECT * FROM man WHERE name = 'Nýmeček'");
 $man = $array_man[0];
 echo $man->name." [".$man->age."]<br>";
+
+
+echo "<br>---------------------------------------------<br><br>";
+echo "<br>---------------------------------------------<br><br>";
+echo "AUTO INCREMENT of MAN: ".$GLOBALS["mysql"]->increment("man")."<br>";
