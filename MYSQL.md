@@ -228,5 +228,5 @@ $GLOBALS["mysql"]->increment("man")	=> 126
 Return last given increment of specicic *$table*
 
 ```php
-$GLOBALS["mysql"]->increment("man")	=> 126
+$GLOBALS["mysql"]->increment("man")	=> 125
 ```
