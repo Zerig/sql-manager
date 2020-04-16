@@ -113,6 +113,25 @@ $success = $GLOBALS["mysql"]->multi_query("
 $success	=> true // when everything is OK
 ```
 
+<br>
+<hr>
+<br>
+
+## IDEAL HTML FORM
+If you use this type of **form elements** name you can use easier way to send data through INSERT / UPDATE / UPSERT
+```html
+<form method="POST" name="man">
+	<label>Name: </label>
+	<input type="text" name="man['name']" value="<?= $_POST['man']['name'] ?>">
+	<label>Age: </label>
+	<input type="text" name="man['age']" value="<?= $_POST['man']['age'] ?>">
+
+	<input type="submit" name="submit['man']" value="SUBMIT">
+</form>
+```
+<br>
+<hr>
+<br>
 
 ## insert($table, $array_items)
 - **$table [string]**				name of DB table "man"
