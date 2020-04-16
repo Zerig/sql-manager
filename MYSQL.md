@@ -203,11 +203,15 @@ $GLOBALS["mysql"]->insert("man", [
 Check if SQL command return data. If YES return *1*. If NOT return *0*
 
 ```php
-$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Karel'")	=> 1 if exist
+$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Karel'")	=> 0
+
+$GLOBALS["mysql"]->insert("man", ["name" => "Karel", "age" => "54" ]);
+$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Karel'")	=> 1
+
 ```
 
 
-## nextIncrement($table)
+## nextID($table)
 - **$table [string]**	name of table
 - @return [void]
 

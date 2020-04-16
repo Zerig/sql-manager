@@ -127,5 +127,5 @@ echo $man->name." [".$man->age."]<br>";
 
 echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";
-echo "AUTO INCREMENT of MAN: ".$GLOBALS["mysql"]->nextIncrement("man")."<br>";
+echo "AUTO INCREMENT of MAN: ".$GLOBALS["mysql"]->nextID("man")."<br>";
 echo "LAST ID of MAN: ".$GLOBALS["mysql"]->lastID("man")."<br>";

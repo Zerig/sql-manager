@@ -193,7 +193,7 @@ class Mysql extends \Mysqli{
 
 
 
-	public function nextIncrement($table){
+	public function nextID($table){
 		$sql = "
 			SELECT  AUTO_INCREMENT
 			FROM    information_schema.TABLES
