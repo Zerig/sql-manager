@@ -52,6 +52,40 @@ foreach($array_man as $man){
 }
 
 ```
+## multi_query($sql)
+- $sql [string]
+- @return [boolean]
+
+This method can create multiple SQL commands in ONE. They must be divided by ";". SO i it usefull for loading DB.
+```php
+$msg = $GLOBALS["mysql"]->multi_query("
+	-- Adminer 4.6.2 MySQL dump
+
+	SET NAMES utf8;
+	SET time_zone = '+00:00';
+	SET foreign_key_checks = 0;
+	SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+
+	DROP TABLE IF EXISTS `man`;
+	CREATE TABLE `man` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `name` varchar(150) NOT NULL,
+	  `age` int(11) NOT NULL,
+	  PRIMARY KEY (`id`)
+	) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+	INSERT INTO `man` (`id`, `name`, `age`) VALUES
+	(1,	'Jeroným',	28),
+	(2,	'Ráchel',	17),
+	(3,	'Benjamin',	13),
+	(4,	'Ludmila',	48),
+	(5,	'Josef',	52),
+	(6,	'Karel',	54),
+	(11,	'Nym',	28);
+
+	-- 2020-04-16 07:06:49
+");
+```
 
 
 ## insert($table, $array_items)
@@ -62,11 +96,29 @@ foreach($array_man as $man){
 INSERT new row in $table created from data in $array_item.
 
 ```php
+// Both variant are possible
+$GLOBALS["mysql"]->insert("man", $_POST["man"]);
+
 $GLOBALS["mysql"]->insert("man", [
 	"name"	=> "Karel",
 	"age"	=> "54"
 ]);
+```
 
 
+## update($table, $array_items)
+- $table [string]
+- $array_items [key array]
+- @return [boolean]
+
+INSERT new row in $table created from data in $array_item.
+
+```php
+// Both variant are possible
 $GLOBALS["mysql"]->insert("man", $_POST["man"]);
+
+$GLOBALS["mysql"]->insert("man", [
+	"name"	=> "Karel",
+	"age"	=> "54"
+]);
 ```

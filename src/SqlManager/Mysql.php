@@ -50,7 +50,16 @@ class Mysql extends \Mysqli{
 
 
 
+	/* MYSQL INSERT
+	 * inster item into mysql DB
+	 * "INSERT INTO menu ( rank, link ) VALUES ( '10', 'kontakt' )";
+	 * insert("menu", array("rank"=>"10", "link"=>"llink2"))
 
+	 * @table [string]					name of DB "menu"
+	 * @array_items [key array]			values for input "array( 'rank'=>'10', 'link'=>'kontakt' )"
+
+	 * @return [ obj Status ]			null if no problem / string if there is an error
+	 */
 	public function insert($table, $array_items){
 		$sql = "INSERT INTO ".$table." ";
 		$array_items = \FCE\Str::apostrophe_replacer($array_items);	// sort problem with apostrophes
@@ -79,9 +88,56 @@ class Mysql extends \Mysqli{
 
 		parent::query($sql);
 	}
-	public function update(){}
-	public function upsert(){}
-	public function delete(){}
+
+
+
+	/* MYSQL UPDATE
+	 * insert item into mysql DB
+	 * "UPDATE menu SET rank = '10', link = 'kontakt' WHERE id=21 AND link='info'";
+	 * update("menu", array(
+		 "rank" => "888",
+		 "link" => "www"
+	 ), "id=29");
+
+	 * @db [string]						name of DB "menu"
+	 * @array_items [array of pairs]	values for update "array( 'rank'=>'10', 'link'=>'kontakt' )"
+	 * @where [string]					"id=21 AND link='info'"
+
+	 * @return [ null / string]			null if no problem / string if there is an error
+	 */
+	public function update($db, $array_items, $where){
+		$sql = "UPDATE ".$db." SET ";
+		$array_items = \FCE\Str::apostrophe_replacer($array_items);	// sort problem with apostrophes
+
+		$i = 0;
+		foreach($array_items as $k => $v){
+			//$v = str_replace(array("'", '"'), array("&apos;", "&quot;"), $v);
+			// IF key doesn´t start on "!"
+			if($k[0] != "!"){
+				$sql .= ($i != 0) ? ', ' : '' ;
+
+				if($v == "NULL"){
+					$sql .= $k." = ".$v."";
+				}else{
+					$sql .= $k." = '".$v."'";
+				}
+
+				$i++;
+			}
+		}
+
+		$sql .= " WHERE ".$where;
+
+		parent::query($sql);
+	}
+
+	public function upsert(){
+
+	}
+
+	public function delete(){
+
+	}
 
 	public function increment(){
 
