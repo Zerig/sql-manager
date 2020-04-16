@@ -135,7 +135,7 @@ $GLOBALS["mysql"]->update("man", [
 * **$where [string]**			"age=28 AND name='Carl'"
 - @return [boolean]
 
-INSERT new row in $table created from data in $array_item.
+DELETE specific row/rows in *$table* and choose them by *$where* parameters
 
 ```php
 // Both variant are possible
