@@ -193,7 +193,7 @@ class Mysql extends \Mysqli{
 
 
 
-	public function increment($table){
+	public function nextIncrement($table){
 		$sql = "
 			SELECT  AUTO_INCREMENT
 			FROM    information_schema.TABLES
@@ -201,8 +201,17 @@ class Mysql extends \Mysqli{
 		";
 		if(!self::exist($sql))	return null;
 
-		$table = self::query($sql);
-		return $table[0]->AUTO_INCREMENT;
+		$table = self::query_($sql);
+		return $table->AUTO_INCREMENT;
+	}
+
+
+	public function lastID($table){
+		$sql = "SELECT MAX(id) as last_id FROM ".$table."";
+		if(!self::exist($sql))	return null;
+
+		$table = self::query_($sql);
+		return $table->last_id;
 	}
 
 
