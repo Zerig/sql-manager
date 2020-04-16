@@ -110,9 +110,9 @@ $GLOBALS["mysql"]->insert("man", [
 
 
 ## update($table, $array_items, $where)
-* $db [string]				name of DB table "man"
-* $array_items [key array]		values for update "array( 'age'=>'10', 'name'=>'Karel' )"
-* $where [string]			"age=28 AND name='Carl'"
+* **$db [string]**				name of DB table "man"
+* **$array_items [key array]**		values for update "array( 'age'=>'10', 'name'=>'Karel' )"
+* **$where [string]**			"age=28 AND name='Carl'"
 - @return [boolean]
 
 INSERT new row in $table created from data in $array_item.
@@ -130,7 +130,7 @@ $GLOBALS["mysql"]->update("man", [
 
 
 
-## delete($table, $array_items)
+## delete($table, $where)
 - $table [string]
 - $array_items [key array]
 - @return [boolean]
