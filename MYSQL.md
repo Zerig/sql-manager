@@ -170,7 +170,7 @@ $GLOBALS["mysql"]->insert("man", [
 ]);
 ```
 
-
+<hr>
 
 
 ## exist($sql)
