@@ -191,6 +191,16 @@ class Mysql extends \Mysqli{
 	}
 
 
+	public function deleteLast($table){
+		$sql = "
+			DELETE FROM ".$table."
+			WHERE ".self::lastID($table)."
+		";
+
+		self::query($sql);
+	}
+
+
 
 
 	public function nextID($table){

@@ -209,13 +209,20 @@ $GLOBALS["mysql"]->upsert("man", [
 DELETE specific row/rows in *$table* and choose them by *$where* parameters
 
 ```php
-// Both variant are possible
-$GLOBALS["mysql"]->insert("man", $_POST["man"]);
+$GLOBALS["mysql"]->delete("man", "name = 'Karel'");
+$GLOBALS["mysql"]->delete("man", "name = 'Karel' AND age = 28");
+```
 
-$GLOBALS["mysql"]->insert("man", [
-	"name"	=> "Karel",
-	"age"	=> "54"
-]);
+
+## deleteLast($table)
+* **$table [string]** 			name of DB table "man"
+- @return [boolean]
+
+DELETE **last** row in *$table*
+
+```php
+// Both variant are possible
+$GLOBALS["mysql"]->deleteLast("man");
 ```
 
 <hr>
