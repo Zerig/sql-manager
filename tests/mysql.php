@@ -15,6 +15,7 @@ $GLOBALS["mysql"] = new \SqlManager\Mysql([
 	"db_name"		=> "test"
 ]);
 
+
 $msg = $GLOBALS["mysql"]->multi_query("
 	-- Adminer 4.6.2 MySQL dump
 
@@ -26,38 +27,63 @@ $msg = $GLOBALS["mysql"]->multi_query("
 	DROP TABLE IF EXISTS `man`;
 	CREATE TABLE `man` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
-	  `name` varchar(150) NOT NULL,
+	  `name` varchar(150) COLLATE utf8_czech_ci NOT NULL,
 	  `age` int(11) NOT NULL,
 	  PRIMARY KEY (`id`)
-	) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 	INSERT INTO `man` (`id`, `name`, `age`) VALUES
 	(1,	'Jeroným',	28),
 	(2,	'Ráchel',	17),
 	(3,	'Benjamin',	13),
 	(4,	'Ludmila',	48),
-	(5,	'Josef',	52),
-	(6,	'Karel',	54),
-	(11,	'Nym',	28);
+	(5,	'Josef',	52);
 
 	-- 2020-04-16 07:06:49
 ");
 echo "RESET DB MAN: ".$msg."<br>";
 
-$data = $GLOBALS["mysql"]->query("
+
+
+
+
+echo "<br>---------------------------------------------<br><br>";
+
+$array_man = $GLOBALS["mysql"]->query("
 	SELECT *
 	FROM man
 ");
 
-echo print_r($data);
+foreach($array_man as $man){
+	echo $man->name." [".$man->age."]<br>";
+}
 
-
+echo "<br>---------------------------------------------<br><br>";
+echo "::insert('man', ['name' => 'Karel', 'age' => '54'])<br>";
 $GLOBALS["mysql"]->insert("man", [
 	"name"	=> "Karel",
 	"age"	=> "54"
 ]);
-
+echo "::query(\"INSERT INTO man (name, age) VALUES ('Nym', '28')\")<br>";
 $data = $GLOBALS["mysql"]->query("
 	INSERT INTO man (name, age)
 	VALUES ('Nym', '28');
 ");
+echo "<br>---------------------------------------------<br><br>";
+
+
+
+echo "<br>---------------------------------------------<br><br>";
+echo "::update('man', ['name' => 'Karlíček', 'age' => '69'], 'name = Karel')<br>";
+$GLOBALS["mysql"]->update("man", [
+	"name"	=> "Karlíček",
+	"age"	=> "69"
+], "name = 'Karel'");
+$array_man = $GLOBALS["mysql"]->query("SELECT * FROM man WHERE name = 'karlíček'");
+$man = $array_man[0];
+echo $man->name." [".$man->age."]<br>";
+
+echo "<br>---------------------------------------------<br><br>";
+echo "::delete('man', 'name = Nym')<br>";
+$GLOBALS["mysql"]->delete("man", "name = 'Nym'");
+echo "EXIST: ".$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Nym'");

@@ -30,9 +30,16 @@ class Mysql extends \Mysqli{
 
 
 
+
+	public function multi_query($multi_sql){
+		parent::multi_query($multi_sql);
+		while (parent::next_result()) {;} // flush multi_queries
+	}
+
+
+
 	public function query($sql){
 		$db_data = parent::query($sql);
-
 		$array_data = array();
 
 		// SELECT RETURNS object of rows //
@@ -86,7 +93,8 @@ class Mysql extends \Mysqli{
 		}
 		$sql .= " );";
 
-		parent::query($sql);
+
+		self::query($sql);
 	}
 
 
@@ -128,15 +136,31 @@ class Mysql extends \Mysqli{
 
 		$sql .= " WHERE ".$where;
 
-		parent::query($sql);
+		self::query($sql);
 	}
+
+
 
 	public function upsert(){
 
 	}
 
-	public function delete(){
 
+	/* MYSQL DELETE
+	 * inster item into mysql DB
+	 * "INSERT INTO menu ( rank, link ) VALUES ( '10', 'kontakt' )";
+	 * delete("menu", "id=36");
+
+	 * @table [string]					name of DB "menu"
+	 * @where [string]					"id=21 AND link='info'"
+
+	 * @return [ obj Status ]			object which says what happened
+	 */
+	public function delete($table, $where){
+		$sql = "DELETE FROM ".$table." ";
+		$sql .= " WHERE ".$where;
+
+		self::query($sql);
 	}
 
 	public function increment(){
@@ -145,5 +169,10 @@ class Mysql extends \Mysqli{
 
 
 
+	public function exist($sql){
+		$response = parent::query($sql);
+
+		return $response->num_rows > 0;
+	}
 
 }
