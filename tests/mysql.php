@@ -25,7 +25,12 @@ $data = $GLOBALS["mysql"]->query("
 echo print_r($data);
 
 
-$GLOBALS["mysql"]->insert("man", [
+/*$GLOBALS["mysql"]->insert("man", [
 	"name"	=> "Karel",
 	"age"	=> "54"
-]);
+]);*/
+
+$data = $GLOBALS["mysql"]->query("
+	INSERT INTO man (name, age)
+	VALUES ('Nym', '28');
+");

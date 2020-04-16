@@ -33,11 +33,18 @@ $GLOBALS["mysql"] = new \SqlManager\Mysql([
 ## query($sql)
 - $sql [string]
 
-This method takes SQL command and send it to DB.
+This method takes SQL command and send it to DB. It is possible to use it for any SQL command for example:
+ - SELECT
+ - INSERT
+ - UPDATE
+ - DELETE
+ - CREATE
+
+ But **SELECT** is special! because this method can work with data from DB. Load them like array of obj DB.
 ```php
 $data = $GLOBALS["mysql"]->query("
 	SELECT *
 	FROM man
-	WHERE id = 1
 ");
+
 ```
