@@ -1,7 +1,7 @@
 <code style="white-space: pre;">
 <?php
 include_once "../src/SqlManager/Mysql.php";
-include_once "../src/SqlManager/DB.php";
+include_once "../src/SqlManager/RS.php";
 
 include_once "../src/FCE/Str.php";
 include_once "../src/FCE/Date.php";

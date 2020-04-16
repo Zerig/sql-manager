@@ -1,7 +1,7 @@
 <?php
 namespace SqlManager;
 
-class DB{
+class RS{
 	public $key = [];
 	public $val = [];
 
@@ -16,9 +16,5 @@ class DB{
 			}
 		}
 	}
-
-	public function one(){}
-	public function groupedBy(){}
-
 
 }
