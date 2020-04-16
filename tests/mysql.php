@@ -83,7 +83,32 @@ $array_man = $GLOBALS["mysql"]->query("SELECT * FROM man WHERE name = 'karlíče
 $man = $array_man[0];
 echo $man->name." [".$man->age."]<br>";
 
+
+
 echo "<br>---------------------------------------------<br><br>";
 echo "::delete('man', 'name = Nym')<br>";
 $GLOBALS["mysql"]->delete("man", "name = 'Nym'");
 echo "EXIST: ".$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Nym'");
+
+
+
+
+
+echo "<br>---------------------------------------------<br><br>";
+echo "EXIST: ".$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Nýmeček'")."<br>";
+echo "::upsert('man', ['name' => 'Nýmeček', 'age' => '99'], 'name = Nýmeček')<br>";
+$GLOBALS["mysql"]->upsert('man', ['name' => 'Nýmeček', 'age' => '99'], 'name = "Nýmeček"');
+
+$array_man = $GLOBALS["mysql"]->query("SELECT * FROM man WHERE name = 'Nýmeček'");
+$man = $array_man[0];
+echo $man->name." [".$man->age."]<br>";
+
+echo "<br>";
+
+echo "EXIST: ".$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Nýmeček'")."<br>";
+echo "::upsert('man', ['age' => '120'], 'name = Nýmeček')<br>";
+$GLOBALS["mysql"]->upsert('man', ['age' => '120'], 'name = "Nýmeček"');
+
+$array_man = $GLOBALS["mysql"]->query("SELECT * FROM man WHERE name = 'Nýmeček'");
+$man = $array_man[0];
+echo $man->name." [".$man->age."]<br>";

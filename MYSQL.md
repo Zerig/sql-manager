@@ -96,7 +96,7 @@ $success	=> true // when everything is OK
 - **$array_items [key array]**		values for update "array( 'age'=>'10', 'name'=>'Karel' )"
 - @return [boolean]
 
-INSERT new row in $table created from data in $array_item.
+INSERT new row in *$table* created from data in *$array_item*.
 
 ```php
 // Both variant are possible
@@ -115,13 +115,36 @@ $GLOBALS["mysql"]->insert("man", [
 * **$where [string]**				"age=28 AND name='Carl'"
 - @return [boolean]
 
-INSERT new row in $table created from data in $array_item.
+UPDATE specific columns in row/rows in *$table* and choose them by *$where* parameters
 
 ```php
 // Both variant are possible
 $GLOBALS["mysql"]->update("man", $_POST["man"], "name = 'Karel'");
 
 $GLOBALS["mysql"]->update("man", [
+	"name"	=> "Karel",
+	"age"	=> "54"
+], "name = 'Karel'");
+```
+
+
+
+
+## upsert($table, $array_items, $where)
+* **$db [string]**					name of DB table "man"
+* **$array_items [key array]**		values for update "array( 'age'=>'10', 'name'=>'Karel' )"
+* **$where [string]**				"age=28 AND name='Carl'"
+- @return [boolean]
+
+**UPDATE** : when row with specification in *$where* **EXIST**<br>
+**INSERT** : when row with specification in *$where* **NOT EXIST**<br>
+In every case you dont care if row exist or not, but after you have what you wanted.
+
+```php
+// Both variant are possible
+$GLOBALS["mysql"]->upsert("man", $_POST["man"], "name = 'Karel'");
+
+$GLOBALS["mysql"]->upsert("man", [
 	"name"	=> "Karel",
 	"age"	=> "54"
 ], "name = 'Karel'");

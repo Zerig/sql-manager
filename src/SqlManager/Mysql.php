@@ -141,9 +141,23 @@ class Mysql extends \Mysqli{
 
 
 
-	public function upsert(){
 
+	/* MYSQL UPSERT
+	 * Update if exist / Insert if not
+	 * upsert("menu", array("rank"=>"111", "id"=>"15"), "id=15");
+
+	 * @db [string]						name of DB "menu"
+	 * @array_items [array of pairs]	values for update "array( 'rank'=>'10', 'link'=>'kontakt' )"
+	 * @where [string]					"id=21 AND link='info'"
+
+	 * @return [ null / string]			null if no problem / string if there is an error
+	 */
+	public function upsert($db, $array_items, $where){
+		if( self::exist("SELECT *	FROM ".$db." WHERE ".$where."") )	self::update($db, $array_items, $where);
+		else   															self::insert($db, $array_items);
 	}
+
+
 
 
 	/* MYSQL DELETE
