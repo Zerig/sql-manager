@@ -169,3 +169,16 @@ $GLOBALS["mysql"]->insert("man", [
 	"age"	=> "54"
 ]);
 ```
+
+
+
+
+## exist($sql)
+- $sql [string]
+- @return [boolean]
+
+Check if SQL command return data. If YES return *1*. If NOT return *0*
+
+```php
+$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Karel'")	=> 1
+```
