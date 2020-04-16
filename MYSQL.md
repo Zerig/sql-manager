@@ -37,7 +37,8 @@ $GLOBALS["mysql"] = new \SqlManager\Mysql([
 This method takes SQL command and send it to DB. It is possible to use it for any SQL command for example:<br>
 SELECT / INSERT / UPDATE / DELETE / CREATE<br>
 ```php
-$GLOBALS["mysql"]->query(" INSERT INTO man (name, age) VALUES ('John', '28'); ");
+$success = $GLOBALS["mysql"]->query(" INSERT INTO man (name, age) VALUES ('John', '28'); ");
+$success	=> true // when everything is OK
 ```
 But **SELECT** is special! because this method can work with data from DB. Load them like array of obj DB.
 ```php
@@ -58,7 +59,7 @@ foreach($array_man as $man){
 
 This method can create multiple SQL commands in ONE. They must be divided by ";". SO i it usefull for loading DB.
 ```php
-$msg = $GLOBALS["mysql"]->multi_query("
+$success = $GLOBALS["mysql"]->multi_query("
 	-- Adminer 4.6.2 MySQL dump
 
 	SET NAMES utf8;
@@ -85,6 +86,8 @@ $msg = $GLOBALS["mysql"]->multi_query("
 
 	-- 2020-04-16 07:06:49
 ");
+
+$success	=> true // when everything is OK
 ```
 
 
