@@ -103,6 +103,16 @@ echo "EXIST: ".$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Nym'");
 
 
 
+echo "<br>---------------------------------------------<br><br>";
+$GLOBALS["mysql"]->insert("man", ["name"=> "Smazat", "age" => "54"]);
+echo '::insert("man", ["name"=> "Smazat", "age" => "54"])<br>';
+echo "EXIST: ".$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Smazat'")."<br>";
+echo "::deleteLast('man')<br>";
+$GLOBALS["mysql"]->deleteLast("man");
+echo "EXIST: ".$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Smazat'")."<br>";
+
+
+
 
 
 echo "<br>---------------------------------------------<br><br>";
