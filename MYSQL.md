@@ -129,6 +129,12 @@ If you use this type of **form elements** name you can use easier way to send da
 	<input type="submit" name="submit['man']" value="SUBMIT">
 </form>
 ```
+```php
+if(isset($_POST["submit"]["man"])){
+	$success = $GLOBALS["mysql"]->insert("man", $_POST["man"]);
+	echo ($success)? "DATA WERE SUCCESSFULY SEND" : "SENDING DATA FAILS";
+}
+```
 <br>
 <hr>
 <br>
