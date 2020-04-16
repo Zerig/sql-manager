@@ -27,3 +27,17 @@ $GLOBALS["mysql"] = new \SqlManager\Mysql([
 	"db_name"	=> "test"
 ]);
 ```
+
+<hr>
+
+## query($sql)
+- $sql [string]
+
+This method takes SQL command and send it to DB.
+```php
+$data = $GLOBALS["mysql"]->query("
+	SELECT *
+	FROM man
+	WHERE id = 1
+");
+```
