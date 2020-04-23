@@ -45,6 +45,7 @@ class Mysql extends \Mysqli{
 
 	public function query($sql){
 		$db_data = parent::query($sql);
+		self::activity($sql);
 		$array_data = array();
 
 		// SELECT RETURNS object of rows //
@@ -56,7 +57,7 @@ class Mysql extends \Mysqli{
 
 		// OTHER commands RETURN BOOLEAN //
 	 	}else{
-			return $db_data;
+			return [];
 		}
 	}
 
@@ -64,8 +65,29 @@ class Mysql extends \Mysqli{
 	public function query_($sql){
 		$array_data = self::query($sql);
 
-		if(is_array($array_data)) 	return $array_data[0];
-		else 						return $array_data;
+		if(isset($array_data[0])) 	return $array_data[0];	// return SqlManager\RS
+		else 						return null;
+	}
+
+
+	private function activity($sql){
+		$GLOBALS["query"][] = $sql;
+
+		$sql = str_replace("'", "&apos;", $sql);
+
+		parent::query("
+			DELETE FROM _activity
+			ORDER BY datetime LIMIT 1;
+		");
+
+		parent::query("
+			INSERT INTO _activity
+			(query)
+			VALUES ('".$sql."')
+		");
+
+
+
 	}
 
 

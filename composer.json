@@ -17,11 +17,12 @@
     ],
     "require": {
         "php" : ">=5.6.0",
-		"zerig/sql-manager": "@dev"
+		"zerig/date": "@dev"
     },
     "autoload": {
         "psr-4": {
-            "SqlManager\\": "src/"
+            "SqlManager\\": "src/",
+            "FCE\\": "src/"
         }
     },
 	"minimum-stability": "dev"

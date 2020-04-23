@@ -1,0 +1,64 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "c4422c33dc17d985ab1b0c74f63bb2cc",
+    "packages": [
+        {
+            "name": "zerig/date",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Zerig/date.git",
+                "reference": "77457472bd464e0877b54c642859cd1f0123a727"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Zerig/date/zipball/77457472bd464e0877b54c642859cd1f0123a727",
+                "reference": "77457472bd464e0877b54c642859cd1f0123a727",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Date\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeronym Pelikovsky",
+                    "email": "pelikovsky@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Works with DateTime class. Use czech name of Months and Week Days and Format",
+            "keywords": [
+                "czech date",
+                "czech dateTime"
+            ],
+            "time": "2020-04-17T10:05:28+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "zerig/date": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.6.0"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
+}
