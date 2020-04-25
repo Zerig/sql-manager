@@ -37,8 +37,10 @@ class Mysql extends \Mysqli{
 
 
 	public function multi_query($multi_sql){
-		parent::multi_query($multi_sql);
+		$return = parent::multi_query($multi_sql);
 		while (parent::next_result()) {;} // flush multi_queries
+
+		return $return;
 	}
 
 
@@ -171,7 +173,7 @@ class Mysql extends \Mysqli{
 
 		$sql .= "\r\nWHERE ".$where;
 
-		self::query($sql);
+		return self::query($sql);
 	}
 
 
@@ -188,8 +190,8 @@ class Mysql extends \Mysqli{
 	 * @return [ null / string]			null if no problem / string if there is an error
 	 */
 	public function upsert($db, $array_items, $where){
-		if( self::exist("SELECT *	FROM ".$db." WHERE ".$where."") )	self::update($db, $array_items, $where);
-		else   															self::insert($db, $array_items);
+		if( self::exist("SELECT *	FROM ".$db." WHERE ".$where."") )	return self::update($db, $array_items, $where);
+		else   															return self::insert($db, $array_items);
 	}
 
 
@@ -209,7 +211,7 @@ class Mysql extends \Mysqli{
 		$sql = "DELETE FROM ".$table." ";
 		$sql .= " WHERE ".$where;
 
-		self::query($sql);
+		return self::query($sql);
 	}
 
 
@@ -219,7 +221,7 @@ class Mysql extends \Mysqli{
 			WHERE id = '".self::lastID($table)."'
 		";
 
-		self::query($sql);
+		return self::query($sql);
 	}
 
 
