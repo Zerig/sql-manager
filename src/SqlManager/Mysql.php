@@ -117,7 +117,7 @@ class Mysql extends \Mysqli{
 		}
 		$sql .= " )";
 
-		$sql .= "\nVALUES ";
+		$sql .= "\r\nVALUES ";
 
 		// VALUES: ( val1, val2, val3 )
 		$sql .= "( ";
@@ -170,7 +170,7 @@ class Mysql extends \Mysqli{
 			}
 		}
 
-		$sql .= "\nWHERE ".$where;
+		$sql .= "\r\nWHERE ".$where;
 
 		self::query($sql);
 	}
