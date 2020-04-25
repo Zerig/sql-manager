@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Zerig/console.git",
-                "reference": "049b915ce8098a0772469bd5079eedf9a1c31a7a"
+                "reference": "71af1eef31e5dd83b8ddc30999b0fa8db9a6e694"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Zerig/console/zipball/049b915ce8098a0772469bd5079eedf9a1c31a7a",
-                "reference": "049b915ce8098a0772469bd5079eedf9a1c31a7a",
+                "url": "https://api.github.com/repos/Zerig/console/zipball/71af1eef31e5dd83b8ddc30999b0fa8db9a6e694",
+                "reference": "71af1eef31e5dd83b8ddc30999b0fa8db9a6e694",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
                 "console",
                 "log"
             ],
-            "time": "2020-04-25T14:29:01+00:00"
+            "time": "2020-04-25T22:17:39+00:00"
         },
         {
             "name": "zerig/date",
