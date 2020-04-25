@@ -86,68 +86,129 @@ echo '$success => '.$GLOBALS["mysql"]->insert("man", [
 	"age"	=> "54"
 ])."\n";
 
-/*
-echo "::query(\"INSERT INTO man (name, age) VALUES ('Nym', '28')\")<br>";
-$data = $GLOBALS["mysql"]->query("
+echo "\n";
+echo '$success = $GLOBALS["mysql"]->query'."(\"INSERT INTO man (name, age) VALUES ('Nym', '28')\")"."\n";
+echo '$success => '.$GLOBALS["mysql"]->query("
 	INSERT INTO man (name, age)
-	VALUES ('Nym', '28');
-");
-echo "<br>---------------------------------------------<br><br>";
-
-
+	VALUES ('Nym', '28')
+")."\n";
 
 echo "<br>---------------------------------------------<br><br>";
-echo "::update('man', ['name' => 'Karlíček', 'age' => '69'], 'name = Karel')<br>";
-$GLOBALS["mysql"]->update("man", [
+
+
+echo '$success = $GLOBALS["mysql"]'."->update('man', ['name' => 'Karlíček', 'age' => '69'], 'name = Karel')"."\n";
+echo '$success => '.$GLOBALS["mysql"]->update("man", [
 	"name"	=> "Karlíček",
 	"age"	=> "69"
-], "name = 'Karel'");
-$array_man = $GLOBALS["mysql"]->query("SELECT * FROM man WHERE name = 'karlíček'");
-$man = $array_man[0];
-echo $man->name." [".$man->age."]<br>";
+], "name = 'Karel'")."\n";
+$_man = $GLOBALS["mysql"]->query_("SELECT * FROM man WHERE name = 'Karlíček'");
+echo '$GLOBALS["mysql"]->query_("SELECT * FROM man WHERE name = \'Karlíček\'") => '."[$_man->id] [$_man->name] [$_man->age]\n";
+
+
+echo "<br>---------------------------------------------<br><br>";
+
+
+echo '$success = $GLOBALS["mysql"]'."->delete('man', 'name = Nym')        => ".$GLOBALS["mysql"]->delete("man", "name = 'Nym'")."\n";
+echo '$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = \'Nym\'") => '.$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Nym'");
 
 
 
 echo "<br>---------------------------------------------<br><br>";
-echo "::delete('man', 'name = Nym')<br>";
-$GLOBALS["mysql"]->delete("man", "name = 'Nym'");
-echo "EXIST: ".$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Nym'");
 
 
-echo "<br>---------------------------------------------<br><br>";
-$GLOBALS["mysql"]->insert("man", ["name"=> "Smazat", "age" => "54"]);
-echo '::insert("man", ["name"=> "Smazat", "age" => "54"])<br>';
-echo "EXIST: ".$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Smazat'")."<br>";
-echo "::deleteLast('man')<br>";
-$GLOBALS["mysql"]->deleteLast("man");
-echo "EXIST: ".$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Smazat'")."<br>";
+;
+echo '$GLOBALS["mysql"]->insert("man", ["name"=> "Smazat", "age" => "54"]) => '.$GLOBALS["mysql"]->insert("man", ["name"=> "Smazat", "age" => "54"])."\n";
+echo '$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = \'Smazat\'")  => '.$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Smazat'")."\n";
+echo "\n";
+echo '$GLOBALS["mysql"]->'."deleteLast('man') => ".$GLOBALS["mysql"]->deleteLast("man")."\n";
+echo '$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = \'Smazat\'") => '.$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Smazat'")."\n";
 
 
 
 
 
 echo "<br>---------------------------------------------<br><br>";
-echo "EXIST: ".$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Nýmeček'")."<br>";
-echo "::upsert('man', ['name' => 'Nýmeček', 'age' => '99'], 'name = Nýmeček')<br>";
-$GLOBALS["mysql"]->upsert('man', ['name' => 'Nýmeček', 'age' => '99'], 'name = "Nýmeček"');
 
-$array_man = $GLOBALS["mysql"]->query("SELECT * FROM man WHERE name = 'Nýmeček'");
-$man = $array_man[0];
-echo $man->name." [".$man->age."]<br>";
 
-echo "<br>";
+echo '$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = \'Nýmeček\'") => '.$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Nýmeček'")."\n";
+echo '$GLOBALS["mysql"]->upsert'."('man', ['name' => 'Nýmeček', 'age' => '99'], 'name = Nýmeček') => ".$GLOBALS["mysql"]->upsert('man', ['name' => 'Nýmeček', 'age' => '99'], 'name = "Nýmeček"')."\n";
+$_man = $GLOBALS["mysql"]->query_("SELECT * FROM man WHERE name = 'Nýmeček'");
+echo '$GLOBALS["mysql"]->query_("SELECT * FROM man WHERE name = \'Nýmeček\'") => '."[$_man->id] [$_man->name] [$_man->age]\n";
 
-echo "EXIST: ".$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Nýmeček'")."<br>";
-echo "::upsert('man', ['age' => '120'], 'name = Nýmeček')<br>";
-$GLOBALS["mysql"]->upsert('man', ['age' => '120'], 'name = "Nýmeček"');
+echo "\n";
 
-$array_man = $GLOBALS["mysql"]->query("SELECT * FROM man WHERE name = 'Nýmeček'");
-$man = $array_man[0];
-echo $man->name." [".$man->age."]<br>";
+
+echo '$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = \'Nýmeček\'") => '.$GLOBALS["mysql"]->exist("SELECT * FROM man WHERE name = 'Nýmeček'")."\n";
+echo '$GLOBALS["mysql"]->upsert'."('man', ['name' => 'Nýmeček', 'age' => '150'], 'name = Nýmeček') => ".$GLOBALS["mysql"]->upsert('man', ['name' => 'Nýmeček', 'age' => '150'], 'name = "Nýmeček"')."\n";
+$_man = $GLOBALS["mysql"]->query_("SELECT * FROM man WHERE name = 'Nýmeček'");
+echo '$GLOBALS["mysql"]->query_("SELECT * FROM man WHERE name = \'Nýmeček\'") => '."[$_man->id] [$_man->name] [$_man->age]\n";
 
 
 echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";
-echo "AUTO INCREMENT of MAN: ".$GLOBALS["mysql"]->nextID("man")."<br>";
-echo "LAST ID of MAN: ".$GLOBALS["mysql"]->lastID("man")."<br>";
-*/
+
+echo '$GLOBALS["mysql"]->nextID("man") => '.$GLOBALS["mysql"]->nextID("man")."<br>";
+echo '$GLOBALS["mysql"]->lastID("man") => '.$GLOBALS["mysql"]->lastID("man")."<br>";
+
+?>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+<?php
+echo "<h2>MYSQL LOG</h2>";
+echo "<hr>";
+foreach(\Console\Log::getMysql() as $log_data){
+	//echo $log_data->file.' on line '.$log_data->line."\n";
+	echo $log_data->sql."\n";
+	echo "<br>---------------------------------------<br><br>";
+}
+
+
+?>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+<?php
+
+
+?>
+</div>
+
+
+
+
+
+
+
+
+</div>
