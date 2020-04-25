@@ -45,6 +45,7 @@ class Mysql extends \Mysqli{
 
 	public function query($sql){
 		$db_data = parent::query($sql);
+		\Console\Log::($sql);
 		self::activity($sql);
 		$array_data = array();
 
