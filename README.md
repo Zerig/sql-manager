@@ -32,7 +32,7 @@ $GLOBALS["mysql"] = new \SqlManager\Mysql([
 
 ## query($sql)
 - $sql [string]
-- @return [boolean / array of \SqlManager\RS]
+- @return [boolean / array of \SqlManager\MR]
 
 This method takes SQL command and send it to DB. It is possible to use it for any SQL command for example:<br>
 SELECT / INSERT / UPDATE / DELETE / CREATE<br>
@@ -40,7 +40,7 @@ SELECT / INSERT / UPDATE / DELETE / CREATE<br>
 $success = $GLOBALS["mysql"]->query(" INSERT INTO man (name, age) VALUES ('John', '28'); ");
 $success	=> true // when everything is OK
 ```
-But **SELECT** is special! because this method can work with data from DB. Load them like array of RS obj.
+But **SELECT** is special! because this method can work with data from DB. Load them like array of MR obj.
 ```php
 $array_man = $GLOBALS["mysql"]->query("
 	SELECT *
@@ -57,9 +57,9 @@ foreach($array_man as $man){
 
 ## query_($sql)
 - **$sql [string]**				SQL command
-- **@return [\SqlManager\RS]**	Just one OBJ
+- **@return [\SqlManager\MR]**	Just one OBJ
 
-No matter what, you get only **first row** or **NULL**. This row is not in array, it is just *\SqlManager\RS* object.
+No matter what, you get only **first row** or **NULL**. This row is not in array, it is just *\SqlManager\MR* object.
 
 ```php
 $_man = $GLOBALS["mysql"]->query_("

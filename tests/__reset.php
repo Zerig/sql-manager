@@ -33,4 +33,3 @@ $msg = $GLOBALS["mysql"]->multi_query("
 
 	-- 2020-04-16 07:06:49
 ");
-echo "RESET DB MAN: ".$msg."<br>";

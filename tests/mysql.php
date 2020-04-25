@@ -2,6 +2,14 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Composer autoload
 require_once '__reset.php';	// reset DIR structure for testing
+?>
+
+<div style="display:flex;justify-content:space-around">
+<div>
+<?php
+echo "<h2>SQL MANAGER \ MYSQL</h2>";
+echo "<hr>";
+
 
 
 $array_man = $GLOBALS["mysql"]->query("
@@ -61,11 +69,21 @@ echo '$_man = $GLOBALS["mysql"]'."->query('SELECT * FROM not_exist') => ".((!is_
 
 
 echo "<br>---------------------------------------------<br><br>";
-echo "::insert('man', ['name' => 'Karel', 'age' => '54'])<br>";
-$GLOBALS["mysql"]->insert("man", [
+echo '$success = $GLOBALS["mysql"]->insert("man", ["id" => 1, "name" => "Karel", "age" => "54"])'."\n";
+echo '$success => '.$GLOBALS["mysql"]->insert("man", [
+	"id"	=> 1,
 	"name"	=> "Karel",
 	"age"	=> "54"
-]);
+])."\n";
+
+echo "\n";
+echo '$success = $GLOBALS["mysql"]->insert("man", ["name" => "Karel", "age" => "54"])'."\n";
+echo '$success => '.$GLOBALS["mysql"]->insert("man", [
+	"name"	=> "Karel",
+	"age"	=> "54"
+])."\n";
+
+/*
 echo "::query(\"INSERT INTO man (name, age) VALUES ('Nym', '28')\")<br>";
 $data = $GLOBALS["mysql"]->query("
 	INSERT INTO man (name, age)
@@ -129,3 +147,4 @@ echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";
 echo "AUTO INCREMENT of MAN: ".$GLOBALS["mysql"]->nextID("man")."<br>";
 echo "LAST ID of MAN: ".$GLOBALS["mysql"]->lastID("man")."<br>";
+*/

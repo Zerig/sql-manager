@@ -45,20 +45,25 @@ class Mysql extends \Mysqli{
 
 	public function query($sql){
 		$db_data = parent::query($sql);
-		\Console\Log::mysql($sql, __FILE__, __LINE__);
+		\Console\Log::mysql($sql);
 		self::activity($sql);
+
 		$array_data = array();
 
 		// SELECT RETURNS object of rows //
 		if(is_object($db_data)){
 	 		while($db=mysqli_fetch_array($db_data)){
-	 			array_push($array_data, new RS($db));
+	 			array_push($array_data, new MR($db));
 	 		}
 			return $array_data;
 
 		// OTHER commands RETURN BOOLEAN //
-	 	}else{
+		}elseif(strpos($sql, 'SELECT') !== false){
 			return [];
+
+		}else{
+			// For every cases which are NOT SELECT
+			return $db_data;
 		}
 	}
 
@@ -66,7 +71,7 @@ class Mysql extends \Mysqli{
 	public function query_($sql){
 		$array_data = self::query($sql);
 
-		if(isset($array_data[0])) 	return $array_data[0];	// return SqlManager\RS
+		if(isset($array_data[0])) 	return $array_data[0];	// return SqlManager\MR
 		else 						return null;
 	}
 
@@ -130,7 +135,7 @@ class Mysql extends \Mysqli{
 		$sql .= " );";
 
 
-		self::query($sql);
+		return self::query($sql);
 	}
 
 
