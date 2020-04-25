@@ -14,13 +14,15 @@ echo "<hr>";
 
 $array_man = $GLOBALS["mysql"]->query("
 	SELECT *
-	FROM not_exist
+	FROM man
+	WHERE id=256
 ");
-echo '$GLOBALS["mysql"]'."->query('SELECT * FROM not_exist') => [\n";
-foreach($array_man as $man){
+echo '$GLOBALS["mysql"]'."->query('SELECT * FROM man WHERE id=256') => [\n";
+foreach($array_man->get_objects() as $man){
 	echo "	[$man->id] [$man->name] [$man->age]\n";
 }
 echo "]\n";
+
 
 echo "\n";
 $array_man = $GLOBALS["mysql"]->query("
@@ -28,7 +30,7 @@ $array_man = $GLOBALS["mysql"]->query("
 	FROM man
 ");
 echo '$array_man = $GLOBALS["mysql"]'."->query('SELECT * FROM man') => [\n";
-foreach($array_man as $man){
+foreach($array_man->get_objects() as $man){
 	echo "	[$man->id] [$man->name] [$man->age]\n";
 }
 echo "]\n";
@@ -46,9 +48,10 @@ echo '$_man = $GLOBALS["mysql"]'."->query('SELECT * FROM man') => ".((!is_null($
 
 $_man = $GLOBALS["mysql"]->query_("
 	SELECT *
-	FROM not_exist
+	FROM man
+	WHERE id=256
 ");
-echo '$_man = $GLOBALS["mysql"]'."->query('SELECT * FROM not_exist') => ".((!is_null($_man))? "[$_man->id] [$_man->name] [$_man->age]" : "NULL")."\n";;
+echo '$_man = $GLOBALS["mysql"]'."->query('SELECT * FROM man WHERE id=256') => ".((!is_null($_man))? "[$_man->id] [$_man->name] [$_man->age]" : "NULL")."\n";;
 
 
 
