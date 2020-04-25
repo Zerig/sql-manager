@@ -1,12 +1,7 @@
 <?php
 namespace SqlManager;
 
-class MR extends \mysqli_result{
-	public $current_field;
-	public $field_count;
-	public $lengths;
-	public $num_rows;
-
+class MR{
 	public $key = [];
 	public $val = [];
 
