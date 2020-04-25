@@ -45,7 +45,7 @@ class Mysql extends \Mysqli{
 
 	public function query($sql){
 		$db_data = parent::query($sql);
-		\Console\Log::mysql($sql);
+		\Console\Log::mysql($sql, __FILE__, __LINE__);
 		self::activity($sql);
 		$array_data = array();
 
@@ -117,7 +117,7 @@ class Mysql extends \Mysqli{
 		}
 		$sql .= " )";
 
-		$sql .= " VALUES ";
+		$sql .= "\nVALUES ";
 
 		// VALUES: ( val1, val2, val3 )
 		$sql .= "( ";
@@ -170,7 +170,7 @@ class Mysql extends \Mysqli{
 			}
 		}
 
-		$sql .= " WHERE ".$where;
+		$sql .= "\nWHERE ".$where;
 
 		self::query($sql);
 	}
