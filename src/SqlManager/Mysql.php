@@ -53,7 +53,7 @@ class Mysql extends \Mysqli{
 		// SELECT RETURNS object of rows //
 		if(is_object($db_data)){
 	 		while($db=mysqli_fetch_array($db_data)){
-	 			array_push($array_data, new MR($db));
+	 			$array_data[] = new MR($db);
 	 		}
 			return $array_data;
 
