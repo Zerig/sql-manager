@@ -40,6 +40,7 @@ SELECT / INSERT / UPDATE / DELETE / CREATE<br>
 $success = $GLOBALS["mysql"]->query(" INSERT INTO man (name, age) VALUES ('John', '28'); ");
 $success => true // when everything is OK
 ```
+### SELECT
 But **SELECT** is special! because this method can work with data from DB. Load them like array of MR obj.
 ```php
 $array_man = $GLOBALS["mysql"]->query("
