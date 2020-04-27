@@ -12,51 +12,30 @@ echo "<hr>";
 
 
 
-$array_man = $GLOBALS["mysql"]->query("
+$mr_man = $GLOBALS["mysql"]->query("
 	SELECT *
 	FROM man
 	WHERE id=256
 ");
-echo '$array_man = $GLOBALS["mysql"]'."->query('SELECT * FROM man WHERE id=256')\n";
-echo '$array_man->get_objects() => ['."\n";
-foreach($array_man->get_objects() as $man){
+echo '$mr_man = $GLOBALS["mysql"]'."->query('SELECT * FROM man WHERE id=256')\n";
+echo '$mr_man->get_objects() => ['."\n";
+foreach($mr_man->get_objects() as $man){
 	echo "	[$man->id] [$man->name] [$man->age]\n";
 }
 echo "]\n";
 
 
 echo "\n";
-$array_man = $GLOBALS["mysql"]->query("
+$mr_man = $GLOBALS["mysql"]->query("
 	SELECT *
 	FROM man
 ");
-echo '$array_man = $GLOBALS["mysql"]'."->query('SELECT * FROM man')"."\n";
-echo '$array_man->get_objects() => ['."\n";
-foreach($array_man->get_objects() as $man){
+echo '$mr_man = $GLOBALS["mysql"]'."->query('SELECT * FROM man')"."\n";
+echo '$mr_man->get_objects() => ['."\n";
+foreach($mr_man->get_objects() as $man){
 	echo "	[$man->id] [$man->name] [$man->age]\n";
 }
 echo "]\n";
-
-
-echo "<br>---------------------------------------------<br><br>";
-
-$_man = $GLOBALS["mysql"]->query_("
-	SELECT *
-	FROM man
-");
-echo '$_man = $GLOBALS["mysql"]'."->query('SELECT * FROM man') => ".((!is_null($_man))? "[$_man->id] [$_man->name] [$_man->age]" : "NULL")."\n";;
-
-
-
-$_man = $GLOBALS["mysql"]->query_("
-	SELECT *
-	FROM man
-	WHERE id=256
-");
-echo '$_man = $GLOBALS["mysql"]'."->query('SELECT * FROM man WHERE id=256') => ".((!is_null($_man))? "[$_man->id] [$_man->name] [$_man->age]" : "NULL")."\n";;
-
-
-
 
 
 
@@ -188,7 +167,32 @@ foreach(\Console\Log::getMysql() as $log_data){
 
 
 
+<div>
+<?php
+echo "<h2>SELECT * FROM MAN</h2>";
+echo "<hr>";
+$mr_man = $GLOBALS["mysql"]->query("
+	SELECT *
+	FROM man
+");
 
+
+echo '<table style="width:100%; text-align:left;">';
+echo '<tr>';
+	foreach($mr_man->key as $key){
+		echo '<th>'.$key.'</th>';
+	}
+echo '</tr>';
+foreach($mr_man->get_objects() as $man){
+	echo '<tr>';
+		foreach($mr_man->key as $key){
+			echo '<td>'.$man->{$key}.'</td>';
+		}
+	echo '</tr>';
+}
+echo '</table>';
+?>
+</div>
 
 
 
