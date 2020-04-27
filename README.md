@@ -47,9 +47,26 @@ $array_man = $GLOBALS["mysql"]->query("
 	FROM man
 ");
 
+$array_man->get_objects() => [
+	[0] => stdClass [
+			[id]   => 1,
+			[name] => "Jeroným",
+			[age]  => 28
+	],
+	[1] => stdClass [
+			[id]   => 2,
+			[name] => "Ráchel",
+			[age]  => 17
+	],
+	[2] => stdClass [
+			[id]   => 3,
+			[name] => "Benjamin",
+			[age]  => 13
+	]
+]
+
 foreach($array_man as $man){
-	$array->name	=> "John"
-	$array->age 	=> "28"
+	echo $man->name."\n";
 }
 
 ```

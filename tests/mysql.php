@@ -17,7 +17,8 @@ $array_man = $GLOBALS["mysql"]->query("
 	FROM man
 	WHERE id=256
 ");
-echo '$GLOBALS["mysql"]'."->query('SELECT * FROM man WHERE id=256') => [\n";
+echo '$array_man = $GLOBALS["mysql"]'."->query('SELECT * FROM man WHERE id=256')\n";
+echo '$array_man->get_objects() => ['."\n";
 foreach($array_man->get_objects() as $man){
 	echo "	[$man->id] [$man->name] [$man->age]\n";
 }
@@ -29,7 +30,8 @@ $array_man = $GLOBALS["mysql"]->query("
 	SELECT *
 	FROM man
 ");
-echo '$array_man = $GLOBALS["mysql"]'."->query('SELECT * FROM man') => [\n";
+echo '$array_man = $GLOBALS["mysql"]'."->query('SELECT * FROM man')"."\n";
+echo '$array_man->get_objects() => ['."\n";
 foreach($array_man->get_objects() as $man){
 	echo "	[$man->id] [$man->name] [$man->age]\n";
 }
