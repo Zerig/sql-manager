@@ -4,23 +4,23 @@
 This class works with **MYSQL RESULT** data. Usually from SELECT. Contains result data.
 ```php
 public $key = [];          // array of all columns from query result
-public $array_data = [];  // array of stdClass
+public $array_data = [];   // array of stdClass
 ```
 \n
 You usually don´t create MR on your own. Class [SqlManager\Mysql](https://github.com/Zerig/sql-manager/blob/master/MYSQL.md#querysql) create it when *sql query* returns results => db rows.
 ```php
-$array_man = $GLOBALS["mysql"]->query("
+$mr_man = $GLOBALS["mysql"]->query("
 	SELECT *
 	FROM man
 ");
 
 // RESULTS ↓
-$array_man->key => [
+$mr_man->key => [
 	[0] => "id",
 	[1] => "name",
 	[2] => "age"
 ]
-$array_man->array_data => [
+$mr_man->array_data => [
 	[0] => stdClass(
 			[id]   => 1,
 			[name] => "Jeronym",
@@ -38,14 +38,16 @@ $array_man->array_data => [
 	)
 ]
 ```
-
+<br>
+<hr>
+<br>
 
 ## get_objects()
 - @return [array of stdClass]
 
 This method return data as array of stdClass.
 ```php
-$array_man->get_objects() => [
+$mr_man->get_objects() => [
 	[0] => stdClass(
 			[id]   => 1,
 			[name] => "Jeronym",
@@ -64,7 +66,7 @@ $array_man->get_objects() => [
 ]
 
 // IF YOU WANT GET SELECTED QUERY DATA USE THIS:
-foreach($array_man->get_objects() as $man){
+foreach($mr_man->get_objects() as $man){
 	echo $man->name." - ".$man->age."\n";
 }
 ```
@@ -75,7 +77,7 @@ foreach($array_man->get_objects() as $man){
 
 This method return data as array of stdClass.
 ```php
-$array_man->get_arrays() => [
+$mr_man->get_arrays() => [
 	[0] => [
 			[id]   => 1,
 			[name] => "Jeronym",
@@ -94,7 +96,7 @@ $array_man->get_arrays() => [
 ]
 
 // IF YOU WANT GET SELECTED QUERY DATA USE THIS:
-foreach($array_man->get_arrays() as $man){
+foreach($mr_man->get_arrays() as $man){
 	echo $man["name"]." - ".$man["age"]."\n";
 }
 ```
@@ -111,25 +113,25 @@ This method return one sql row in instance of *stdClass*. You can choose which o
 - **$i = -1** returns last
 - **$i = -2** returns item before the last
 ```php
-$array_man->get_object(0) => stdClass(
+$mr_man->get_object(0) => stdClass(
 		[id]   => 1,
 		[name] => "Jeronym",
 		[age]  => 28
 )
 
-$array_man->get_object(1) => stdClass(
+$mr_man->get_object(1) => stdClass(
 		[id]   => 2,
 		[name] => "Rachel",
 		[age]  => 17
 )
 
-$array_man->get_object(-1) => stdClass(
+$mr_man->get_object(-1) => stdClass(
 		[id]   => 3,
 		[name] => "Benjamin",
 		[age]  => 13
 )
 
-$array_man->get_object(-2) => stdClass(
+$mr_man->get_object(-2) => stdClass(
 		[id]   => 2,
 		[name] => "Rachel",
 		[age]  => 17
@@ -147,25 +149,25 @@ This method return one sql row in *array*. You can choose which one you want fro
 - **$i = -1** returns last
 - **$i = -2** returns item before the last
 ```php
-$array_man->get_arrayt(0) => [
+$mr_man->get_arrayt(0) => [
 		[id]   => 1,
 		[name] => "Jeronym",
 		[age]  => 28
 ]
 
-$array_man->get_arrayt(1) => [
+$mr_man->get_arrayt(1) => [
 		[id]   => 2,
 		[name] => "Rachel",
 		[age]  => 17
 ]
 
-$array_man->get_arrayt(-1) => [
+$mr_man->get_arrayt(-1) => [
 		[id]   => 3,
 		[name] => "Benjamin",
 		[age]  => 13
 ]
 
-$array_man->get_arrayt(-2) => [
+$mr_man->get_arrayt(-2) => [
 		[id]   => 2,
 		[name] => "Rachel",
 		[age]  => 17
