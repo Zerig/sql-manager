@@ -38,7 +38,7 @@ This method takes SQL command and send it to DB. It is possible to use it for an
 SELECT / INSERT / UPDATE / DELETE / CREATE<br>
 ```php
 $success = $GLOBALS["mysql"]->query(" INSERT INTO man (name, age) VALUES ('John', '28'); ");
-$success	=> true // when everything is OK
+$success => true // when everything is OK
 ```
 But **SELECT** is special! because this method can work with data from DB. Load them like array of MR obj.
 ```php
