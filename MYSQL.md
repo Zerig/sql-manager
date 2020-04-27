@@ -42,13 +42,15 @@ $success => true // when everything is OK
 ```
 ### SELECT
 But **SELECT** is special! because this method can work with data from DB. Load them like array of MR obj.
+- **get_objects()** returns array of instances *stdClass*
+- **get_arrays()** returns array of array *stdClass*
 ```php
 $array_man = $GLOBALS["mysql"]->query("
 	SELECT *
 	FROM man
 ");
 
-$array_man->get_objects() => [
+$array_man->array_data => [
 	[0] => stdClass [
 			[id]   => 1,
 			[name] => "Jeroným",

@@ -2,9 +2,8 @@
 namespace SqlManager;
 
 class MR extends \mysqli_result{
-	public $key = [];
-
-	public $array_data = [];
+	public $key = [];			// array of all columns from query result
+	public $array_data = [];	// array of stdClass
 
 
 	// IT SET PARENT CLASS RIGHT
