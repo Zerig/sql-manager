@@ -65,7 +65,7 @@ $array_man->get_objects() => [
 	]
 ]
 
-foreach($array_man as $man){
+foreach($array_man->get_objects() as $man){
 	echo $man->name."\n";
 }
 
