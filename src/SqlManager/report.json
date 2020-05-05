@@ -1,0 +1,17 @@
+{
+
+	"fail": {
+		"0": "Něco se pokazilo, omlouváme se!",
+		"mysql":{
+			"0": "Při práci s daty došlo k chybě!",
+			"insert":{
+				"0": "Při nahrávání dat došlo k chybě!",
+				"duplicate": "Položka nebyla nahrána! Již existuje!";
+				"missing": "Je po";
+			}
+		}
+	}
+
+
+
+}

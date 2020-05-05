@@ -25,7 +25,7 @@ class Mysql extends \Mysqli{
 		return parent::ping();
 	}
 
-	public function connect(){
+	public function connect($host = NULL, $user = NULL, $password = NULL, $database = NULL, $port = NULL, $socket = NULL){
 		$this->mysqli = parent::__construct($this->server_name, $this->db_user, $this->db_pass, $this->db_name);
 	}
 
@@ -45,14 +45,16 @@ class Mysql extends \Mysqli{
 
 
 
-	public function query($sql){
-		$db_data = parent::query($sql);
-		\Console\Log::mysql($sql);
-		self::activity($sql);
+	public function query($query, $resultmode = NULL){
+		$db_data = parent::query($query);
+		\Console\Log::mysql($query);
+		\Report\Mysql::set($GLOBALS["mysql"], $query);
+
+		//self::activity($query);
 
 		// SELECT RETURNS object of rows //
 		if(is_a($db_data, "mysqli_result")){
-			$this->real_query($sql);
+			$this->real_query($query);
 			$mr = new MR($this);	// create my own class which extends "mysql_result"
 			$mr->setData();			// set data to be permanent. NOT for one use
 
