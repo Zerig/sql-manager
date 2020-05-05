@@ -38,6 +38,25 @@ $mr_man->array_data => [
 	)
 ]
 ```
+
+
+## hasData()
+- @return [boolean]
+
+Check if sql query return data or NOT
+```php
+$mr_man->hasData() => 1
+
+```
+
+## rows()
+- @return [int]
+
+Return number of rows, which we get
+```php
+$mr_man->hasData() => 3
+
+```
 <br>
 <hr>
 <br>

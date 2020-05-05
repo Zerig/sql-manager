@@ -30,6 +30,14 @@ echo '$mr_man = $GLOBALS["mysql"]'."->query('SELECT * FROM man')"."\n";
 echo "<br>---------------------------------------";
 echo "<br>---------------------------------------<br><br>";
 
+echo '$mr_man_empty->hasData() => '.$mr_man_empty->hasData()."\n";
+echo '$mr_man->hasData()       => '.$mr_man->hasData()."\n";
+echo "\n";
+echo '$mr_man_empty->rows() => '.$mr_man_empty->rows()."\n";
+echo '$mr_man->rows()       => '.$mr_man->rows()."\n";
+
+echo "<br>---------------------------------------<br><br>";
+
 echo '$mr_man_empty->get_objects() => ['."\n";
 foreach($mr_man_empty->get_objects() as $man){
 	echo "	[$man->id] [$man->name] [$man->age]\n";

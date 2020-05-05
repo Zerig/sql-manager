@@ -29,7 +29,21 @@ class MR extends \mysqli_result{
 	}
 
 
+	public function hasData(){
+		foreach($this->array_data as $data){
+			return true;
+		}
+		return false;
+	}
 
+	public function rows(){
+		$i = 0;
+		foreach($this->array_data as $data){
+			$i++;
+		}
+		return $i;
+
+	}
 
 
 
